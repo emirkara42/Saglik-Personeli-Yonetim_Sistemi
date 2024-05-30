@@ -1,4 +1,5 @@
 from Personel import Personel
+
 class Doktor(Personel):
     def __init__(self, personel_no, ad, soyad, departman, maas, uzmanlik, deneyim_yili, hastane):
         super().__init__(personel_no, ad, soyad, departman, maas)
