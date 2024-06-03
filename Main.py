@@ -106,12 +106,12 @@ def dataframe_islemleri(df):
     #Hasta isimlerini alfabetik siralama.
     hasta_alfabetik = df[df['hasta_no'] != 0].sort_values(by='ad') #Hasta no 0 olmayan satirlari .sortvalues(by="ad") ile siralama. ascending= False olsa tersine siralar.
     print("\nHasta Adina Göre Alfabetik Siralanmis Liste:")
-    print(hasta_alfabetik[['hasta_no', 'ad', 'soyad']]) #Yalnizca bu sütunları bastir.
+    print(hasta_alfabetik[['hasta_no', 'ad', 'soyad', 'dogum_tarihi', 'hastalik', 'tedavi']]) #Yalnizca bu sütunları bastir.
 
     #Maasi 7000 den buyuk olan personel bastir.
     yuksek_maas_personel = df[df['maas'] > 7000]
     print("\nMaasi 7000 TL Üzerinde Olan Personel:")
-    print(yuksek_maas_personel[['personel_no', 'ad', 'soyad', 'maas']]) #Yalnizca bu sütunları bastir.
+    print(yuksek_maas_personel[['personel_no', 'ad', 'soyad', 'departman', 'maas']]) #Yalnizca bu sütunları bastir.
 
     #pandas DateTime nenelerine dondurulen degerler Timestamp ile karsilastirilir --> True, False doner
     yeni_hastalar = df[pd.to_datetime(df['dogum_tarihi']) > pd.Timestamp('1990-01-01')]
