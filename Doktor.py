@@ -22,7 +22,7 @@ class Doktor(Personel):
     def set_deneyim_yili(self, yeni_deneyim_yili):
         self.__deneyim_yili = yeni_deneyim_yili
 
-    def set_hastana(self, yeni_hastane):
+    def set_hastane(self, yeni_hastane):
         self.__hastane = yeni_hastane
 
     def maas_arttir(self):
