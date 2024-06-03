@@ -116,7 +116,8 @@ def main():
     ]
 
     df = dataframe_olustur(personel_listesi, doktor_listesi, hemsire_listesi, hasta_listesi)
-    dataframe_islemleri(df)
+    print(df)
+    #dataframe_islemleri(df)
 
 if __name__ == "__main__":
     main()
