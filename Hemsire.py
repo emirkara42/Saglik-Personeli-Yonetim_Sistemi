@@ -17,8 +17,8 @@ class Hemsire(Personel):
         return self.__hastane
 
     def maas_arttir(self, oran):
-        yeni_maas = self.get_maas() * (1 + oran / 100)
+        yeni_maas = self.get_maas() * (1 + 40 / 100)
         self.set_maas(yeni_maas)
 
     def __str__(self):
-        return f"{super().__str__()}, Çalışma Saati: {self.__calisma_saati}, Sertifika: {self.__sertifika}, Hastane: {self.__hastane}"
+        return f"{super().__str__()}, Çalisma Saati: {self.__calisma_saati}, Sertifika: {self.__sertifika}, Hastane: {self.__hastane}"

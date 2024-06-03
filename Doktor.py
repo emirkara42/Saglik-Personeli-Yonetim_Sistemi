@@ -16,9 +16,9 @@ class Doktor(Personel):
     def get_hastane(self):
         return self.__hastane
 
-    def maas_arttir(self, oran):
-        yeni_maas = self.get_maas() * (1 + oran / 100)
+    def maas_arttir(self):
+        yeni_maas = self.get_maas() * (1 + 40 / 100)
         self.set_maas(yeni_maas)
 
     def __str__(self):
-        return f"{super().__str__()}, Uzmanlık: {self.__uzmanlik}, Deneyim Yılı: {self.__deneyim_yili}, Hastane: {self.__hastane}"
+        return f"{super().__str__()}, Uzmanlik: {self.__uzmanlik}, Deneyim Yili: {self.__deneyim_yili}, Hastane: {self.__hastane}"

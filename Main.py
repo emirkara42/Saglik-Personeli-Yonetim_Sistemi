@@ -89,35 +89,70 @@ def dataframe_olustur(personel_listesi, doktor_listesi, hemsire_listesi, hasta_l
     df = pd.DataFrame(data)
     return df
 
-def dataframe_islemleri():
-    pass
+def dataframe_islemleri(df):
+    df.fillna(0, inplace=True)
+
+    doktor_sayilari = df.groupby('uzmanlik').size()
+    doktor_sayilari = doktor_sayilari[doktor_sayilari.index != 0]
+    print("\nDoktor Sayilari (Uzmanlik Alanina Göre):")
+    print(doktor_sayilari)
+
+    deneyimli_doktorlar = df[df['deneyim_yili'] > 5].shape[0]
+    print(f"\n5 Yildan Fazla Deneyime Sahip Doktor Sayisi: {deneyimli_doktorlar}")
+
+    hasta_alfabetik = df[df['hasta_no'] != 0].sort_values(by='ad')
+    print("\nHasta Adina Göre Alfabetik Siralanmis Liste:")
+    print(hasta_alfabetik[['hasta_no', 'ad', 'soyad']])
+
+    yuksek_maas_personel = df[df['maas'] > 7000]
+    print("\nMaasi 7000 TL Üzerinde Olan Personel:")
+    print(yuksek_maas_personel[['personel_no', 'ad', 'soyad', 'maas']])
+
+    yeni_hastalar = df[pd.to_datetime(df['dogum_tarihi']) > pd.Timestamp('1990-01-01')]
+    print("\n1990 ve Sonrasinda Doğan Hastalar:")
+    print(yeni_hastalar[['hasta_no', 'ad', 'soyad', 'dogum_tarihi']])
+
+    yeni_dataframe = df[['ad', 'soyad', 'departman', 'maas', 'uzmanlik', 'deneyim_yili', 'hastane', 'hastalik', 'tedavi']]
+    print("\nYeni DataFrame:")
+    print(yeni_dataframe)
 
 def main():
     personel_listesi = [
-        Personel(123456789, "Emir", "Kara", "IT", 45000)
+        Personel(1, "Emir", "Kara", "IT", 45000),
+        Personel(2, "Ada", "Gok", "Ozluk", 50000)
     ]
+    print(personel_listesi[0])
+    print(personel_listesi[1])
 
     doktor_listesi = [
-        Doktor(213456789, "İrem", "Kara", "Cerrahi", 90000, "Genel Cerrah", 10, "Çiğli Devlet Hastanesi"),
-        Doktor(312456789, "Seçil", "Erdal", "Dahiliye", 80000, "İç Hastaliklari", 7, "Menemen Devlet Hastanesi"),
-        Doktor(412356789, "Tarik", "Dincsoy", "Pediatri", 75000, "Çocuk Sağliği", 5, "Karşiyaka Devlet Hastanesi")
+        Doktor(3, "İrem", "Kara", "Cerrahi", 90000, "Genel Cerrah", 10, "Çiğli Devlet Hastanesi"),
+        Doktor(4, "Seçil", "Erdal", "Dahiliye", 80000, "İç Hastaliklari", 7, "Menemen Devlet Hastanesi"),
+        Doktor(5, "Tarik", "Dincsoy", "Pediatri", 75000, "Çocuk Sağliği", 5, "Karşiyaka Devlet Hastanesi")
     ]
-
+    print(doktor_listesi[0])
+    print(doktor_listesi[1])
+    print(doktor_listesi[2])
+    
     hemsire_listesi = [
-        Hemsire(512346789, "Gorkem", "Kiristioglu", "Acil", 75000, 40, "Yoğun Bakim", "Karşiyaka Devlet Hastanesi"),
-        Hemsire(612345789, "Deniz", "Altun", "Kardiyoloji", 65000, 45, "Kardiyovasküler", "Çiğli Devlet Hastanesi"),
-        Hemsire(712345689, "Berkan", "Ilbayli", "Nöroloji", 65000, 42, "Nörolojik Bakim", "Menemen Devlet Hastanesi")
+        Hemsire(6, "Gorkem", "Kiristioglu", "Acil", 75000, 40, "Yoğun Bakim", "Karşiyaka Devlet Hastanesi"),
+        Hemsire(7, "Deniz", "Altun", "Kardiyoloji", 65000, 45, "Kardiyovasküler", "Çiğli Devlet Hastanesi"),
+        Hemsire(8, "Berkan", "Ilbayli", "Nöroloji", 65000, 42, "Nörolojik Bakim", "Menemen Devlet Hastanesi")
     ]
+    print(hemsire_listesi[0])
+    print(hemsire_listesi[1])
+    print(hemsire_listesi[2])
 
     hasta_listesi = [
-        Hasta(812345679, "Yagmur", "Eren", "02-11-2002", "Migren", "İlaç Tedavisi"),
-        Hasta(912345678, "Fatma", "Gok", "21-01-1965", "Diabet", "İnsülin Tedavisi"),
-        Hasta(102345678, "Mehmed", "Cakirdiken", "30-05-2980", "Astim", "Solunum Tedavisi")
+        Hasta(9, "Yagmur", "Eren", "2002-02-02", "Migren", "İlaç Tedavisi"),
+        Hasta(10, "Fatma", "Gok", "1965-05-05", "Diabet", "İnsülin Tedavisi"),
+        Hasta(11, "Mehmed", "Cakirdiken", "1980-08-08", "Astim", "Solunum Tedavisi")
     ]
+    print(hasta_listesi[0])
+    print(hasta_listesi[1])
+    print(hasta_listesi[2])
 
     df = dataframe_olustur(personel_listesi, doktor_listesi, hemsire_listesi, hasta_listesi)
-    print(df)
-    #dataframe_islemleri(df)
+    dataframe_islemleri(df)
 
 if __name__ == "__main__":
     main()

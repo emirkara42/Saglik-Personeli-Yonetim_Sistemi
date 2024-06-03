@@ -26,8 +26,15 @@ class Hasta:
     def get_tedavi(self):
         return self.__tedavi
 
-    def tedavi_suresi_hesapla(self):
-        return len(self.__tedavi)
+    def tedavi_suresi_hesapla(self, hastalik):
+        if hastalik == "Migren":
+            return 5
+        elif hastalik == "Diabet":
+            return 7
+        elif hastalik == "Astim":
+            return 12
+        else: 
+            return None
 
     def __str__(self):
-        return f"Hasta No: {self.__hasta_no}, Ad: {self.__ad}, Soyad: {self.__soyad}, Doğum Tarihi: {self.__dogum_tarihi}, Hastalık: {self.__hastalik}, Tedavi: {self.__tedavi}"
+        return f"Hasta No: {self.__hasta_no}, Ad: {self.__ad}, Soyad: {self.__soyad}, Dogum Tarihi: {self.__dogum_tarihi}, Hastalik: {self.__hastalik}, Tedavi: {self.__tedavi}"
