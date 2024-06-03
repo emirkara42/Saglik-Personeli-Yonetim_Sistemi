@@ -20,6 +20,18 @@ class Personel:
 
     def get_maas(self):
         return self.__maas
+    
+    def set_personel_no(self, yeni_personel_no):
+        self.__personel_no = yeni_personel_no
+
+    def set_ad(self, yeni_ad):
+        self.__ad = yeni_ad
+
+    def set_soyad(self, yeni_soyad):
+        self.__soyad = yeni_soyad
+
+    def set_departman(self, yeni_departman):
+        self.__departman = yeni_departman
 
     def set_maas(self, yeni_maas):
         self.__maas = yeni_maas

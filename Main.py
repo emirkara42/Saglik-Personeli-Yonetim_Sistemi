@@ -90,24 +90,30 @@ def dataframe_olustur(personel_listesi, doktor_listesi, hemsire_listesi, hasta_l
     return df
 
 def dataframe_islemleri(df):
+    #Bos olan degisken degerleri icin 0 atama.
     df.fillna(0, inplace=True)
 
-    doktor_sayilari = df.groupby('uzmanlik').size()
-    doktor_sayilari = doktor_sayilari[doktor_sayilari.index != 0]
+    #Uzmanlik sutununa gore gruplama ve .size() ile bunların adedi.
+    doktor_sayilari = df.groupby('uzmanlik').size() 
+    doktor_sayilari = doktor_sayilari[doktor_sayilari.index != 0] #0'a esit olmayanlardan yeni bir df
     print("\nDoktor Sayilari (Uzmanlik Alanina Göre):")
-    print(doktor_sayilari)
 
+    print(doktor_sayilari)
+    #df[df[...] > ...] kiyaslama yapilirken kullanilir ve shape[0] bunlarin satir sayisini dondurur.
     deneyimli_doktorlar = df[df['deneyim_yili'] > 5].shape[0]
     print(f"\n5 Yildan Fazla Deneyime Sahip Doktor Sayisi: {deneyimli_doktorlar}")
 
-    hasta_alfabetik = df[df['hasta_no'] != 0].sort_values(by='ad')
+    #Hasta isimlerini alfabetik siralama.
+    hasta_alfabetik = df[df['hasta_no'] != 0].sort_values(by='ad') #Hasta no 0 olmayan satirlari .sortvalues(by="ad") ile siralama. ascending= False olsa tersine siralar.
     print("\nHasta Adina Göre Alfabetik Siralanmis Liste:")
-    print(hasta_alfabetik[['hasta_no', 'ad', 'soyad']])
+    print(hasta_alfabetik[['hasta_no', 'ad', 'soyad']]) #Yalnizca bu sütunları bastir.
 
+    #Maasi 7000 den buyuk olan personel bastir.
     yuksek_maas_personel = df[df['maas'] > 7000]
     print("\nMaasi 7000 TL Üzerinde Olan Personel:")
-    print(yuksek_maas_personel[['personel_no', 'ad', 'soyad', 'maas']])
+    print(yuksek_maas_personel[['personel_no', 'ad', 'soyad', 'maas']]) #Yalnizca bu sütunları bastir.
 
+    #pandas DateTime nenelerine dondurulen degerler Timestamp ile karsilastirilir --> True, False doner
     yeni_hastalar = df[pd.to_datetime(df['dogum_tarihi']) > pd.Timestamp('1990-01-01')]
     print("\n1990 ve Sonrasinda Doğan Hastalar:")
     print(yeni_hastalar[['hasta_no', 'ad', 'soyad', 'dogum_tarihi']])

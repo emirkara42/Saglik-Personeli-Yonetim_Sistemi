@@ -15,6 +15,15 @@ class Doktor(Personel):
 
     def get_hastane(self):
         return self.__hastane
+    
+    def set_uzmanlik(self, yeni_uzmanlik):
+        self.__uzmanlik = yeni_uzmanlik
+
+    def set_deneyim_yili(self, yeni_deneyim_yili):
+        self.__deneyim_yili = yeni_deneyim_yili
+
+    def set_hastana(self, yeni_hastane):
+        self.__hastane = yeni_hastane
 
     def maas_arttir(self):
         yeni_maas = self.get_maas() * (1 + 40 / 100)

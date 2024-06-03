@@ -15,6 +15,15 @@ class Hemsire(Personel):
 
     def get_hastane(self):
         return self.__hastane
+    
+    def set_calisma_saati(self, yeni_calisma_saati):
+        self.__calisma_saati = yeni_calisma_saati
+
+    def set_sertifika(self, yeni_sertifika):
+        self.__sertifika = yeni_sertifika
+
+    def set_hastane(self, yeni_hastane):
+        self.__hastane = yeni_hastane
 
     def maas_arttir(self, oran):
         yeni_maas = self.get_maas() * (1 + 40 / 100)

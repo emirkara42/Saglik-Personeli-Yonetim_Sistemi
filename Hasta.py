@@ -1,5 +1,5 @@
 class Hasta:
-    
+
     def __init__(self, hasta_no, ad, soyad, dogum_tarihi, hastalik, tedavi):
         self.__hasta_no = hasta_no
         self.__ad = ad
@@ -25,7 +25,25 @@ class Hasta:
 
     def get_tedavi(self):
         return self.__tedavi
+    
+    def set_hasta_no(self, yeni_hasta_no):
+        self.__hasta_no = yeni_hasta_no
 
+    def set_ad(self, yeni_ad):
+        self.__ad = yeni_ad
+
+    def set_soyad(self, yeni_soyad):
+        self.__soyad = yeni_soyad
+
+    def set_dogum_tarihi(self, yeni_dogum_tarihi):
+        self.__dogum_tarihi = yeni_dogum_tarihi
+
+    def set_hastalik(self, yeni_hastalik):
+        self.__hastalik = yeni_hastalik
+
+    def set_tedavi(self, yeni_tedavi):
+        self.__tedavi = yeni_tedavi
+    
     def tedavi_suresi_hesapla(self, hastalik):
         if hastalik == "Migren":
             return 5
@@ -35,6 +53,6 @@ class Hasta:
             return 12
         else: 
             return None
-
+        
     def __str__(self):
         return f"Hasta No: {self.__hasta_no}, Ad: {self.__ad}, Soyad: {self.__soyad}, Dogum Tarihi: {self.__dogum_tarihi}, Hastalik: {self.__hastalik}, Tedavi: {self.__tedavi}"
