@@ -97,8 +97,8 @@ def dataframe_islemleri(df):
     doktor_sayilari = df.groupby('uzmanlik').size() 
     doktor_sayilari = doktor_sayilari[doktor_sayilari.index != 0] #0'a esit olmayanlardan yeni bir df
     print("\nDoktor Sayilari (Uzmanlik Alanina Göre):")
-
     print(doktor_sayilari)
+    
     #df[df[...] > ...] kiyaslama yapilirken kullanilir ve shape[0] bunlarin satir sayisini dondurur.
     deneyimli_doktorlar = df[df['deneyim_yili'] > 5].shape[0]
     print(f"\n5 Yildan Fazla Deneyime Sahip Doktor Sayisi: {deneyimli_doktorlar}")
